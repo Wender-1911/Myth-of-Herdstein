@@ -1694,6 +1694,10 @@ PrefabInstance:
       propertyPath: cardBackScript
       value: 
       objectReference: {fileID: 219135313206069895, guid: e39c9e7c0a6366c4cb014a5881e1460b, type: 3}
+    - target: {fileID: 219135313206069894, guid: e39c9e7c0a6366c4cb014a5881e1460b, type: 3}
+      propertyPath: cardIdIdentify
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e39c9e7c0a6366c4cb014a5881e1460b, type: 3}
 --- !u!1001 &4526890228425458753
@@ -1703,6 +1707,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1254863717}
     m_Modifications:
+    - target: {fileID: 4456374252324393505, guid: 2e31958758a84714eb030e42143d70eb, type: 3}
+      propertyPath: cardIdIdentify
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4456374252324393506, guid: 2e31958758a84714eb030e42143d70eb, type: 3}
       propertyPath: m_Name
       value: CardBack (1)
