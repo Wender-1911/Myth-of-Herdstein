@@ -29,12 +29,16 @@ public class CardBase : MonoBehaviour
     [SerializeField] public bool cardBack;
     [SerializeField] public CardBack cardBackScript;
 
+    [SerializeField] private GameObject hand;
+    [SerializeField] private int numberOfCardInDeck;
+
     void Start() {
+        cardIdIdentify = Random.Range(1, CardDataBase.cardList.Count);
         thisCard[0] = CardDataBase.cardList[cardIdIdentify];
+        numberOfCardInDeck = PlayerDeck.deckLength;
 
         cardBackScript = GetComponent<CardBack>();
-    }
-    void Update() {
+
         id = thisCard[0].id;
         cardName = thisCard[0].cardName;
         cost = thisCard[0].cost;
@@ -49,5 +53,14 @@ public class CardBase : MonoBehaviour
         cardImage.sprite = cardSprite;
 
         cardBackScript.UpdateCard(cardBack);
+    }
+    private void Update() {
+        if (this.tag == "Clone") {
+            thisCard[0] = PlayerDeck.staticDeck[numberOfCardInDeck - 1];
+            numberOfCardInDeck -= 1;
+            PlayerDeck.deckLength -= 1;
+            cardBack = false;
+            this.tag = "Untagged";
+        }
     }
 }

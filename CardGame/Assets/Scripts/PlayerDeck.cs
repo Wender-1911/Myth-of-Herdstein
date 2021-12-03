@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerDeck : MonoBehaviour {
     [SerializeField] public List<Card> deck = new List<Card>();
     [SerializeField] public List<Card> deckContainer = new List<Card>();
+    [SerializeField] public static List<Card> staticDeck = new List<Card>();
 
-    [SerializeField] private int deckLength;
+    [SerializeField] public static int deckLength;
 
     [SerializeField] private int cardNumberGenerator;
 
@@ -15,10 +16,14 @@ public class PlayerDeck : MonoBehaviour {
     [SerializeField] public GameObject cardInDeck3;
     [SerializeField] public GameObject cardInDeck4;
 
+    [SerializeField] public GameObject cardToHand;
+
     [SerializeField] public GameObject cardBack;
     [SerializeField] public GameObject deckCopy;
 
     [SerializeField] public GameObject[] clones;
+
+    [SerializeField] public GameObject hand;
 
     private void Start() {
         cardNumberGenerator = 0;
@@ -28,18 +33,20 @@ public class PlayerDeck : MonoBehaviour {
             cardNumberGenerator = Random.Range(1, 3);
             deck[i] = CardDataBase.cardList[cardNumberGenerator];
         }
+
+        StartCoroutine(StartGame());
     }
     private void Update() {
+
+        staticDeck = deck;
+
         if (deckLength < 30) {
             cardInDeck1.SetActive(false);
-        }
-        if (deckLength < 20) {
+        } else if (deckLength < 20) {
             cardInDeck2.SetActive(false);
-        }
-        if (deckLength < 2) {
+        } else if (deckLength < 2) {
             cardInDeck3.SetActive(false);
-        }
-        if (deckLength < 1) {
+        } else if (deckLength < 1) {
             cardInDeck4.SetActive(false);
         }
     }
@@ -50,6 +57,13 @@ public class PlayerDeck : MonoBehaviour {
 
         foreach (GameObject clone in clones) {
             Destroy(clone);
+        }
+    }
+    IEnumerator StartGame() {
+        for(int i = 0; i <= 4; i++) {
+            yield return new WaitForSeconds(1);
+            GameObject cardCreation = Instantiate(cardToHand, transform.position, transform.rotation);
+            cardCreation.transform.parent = gameObject.transform;
         }
     }
 

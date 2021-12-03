@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardBackPrefab : MonoBehaviour
-{
+public class CardBackPrefab : MonoBehaviour {
     [SerializeField] private GameObject deck;
     [SerializeField] private GameObject it;
 
